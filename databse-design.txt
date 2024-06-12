@@ -1,0 +1,49 @@
+Tools
+    ->  id
+    ->  tool_name (Required, String)
+    ->  tool_description (Required, String)
+    ->  tool_type (Required, String)
+    ->  created_at (Required, Date)
+    ->  last_updated (Optional, Date)
+
+CREW
+    ->  Agents[]
+        ->  id (Auto Increment)
+        ->  role (Required, String)
+        ->  backstory (Required, String)
+        ->  goal (Required, String)
+        ->  tools_ids[] (Optional)
+        ->  created_at (Required, Date)
+        ->  last_updated (Optional, Date)
+    ->  Tasks[]
+        ->  id (Auto Increment)
+        ->  description (Required, String)
+        ->  expected_outcome (Optional, String)
+        ->  async_execution (Optional, Boolean)
+        ->  created_at (Required, Date)
+        ->  last_updated (Optional, Date)
+    -> Run
+        -> OrderedTask[] (A list that contains the order of operations.)
+            ->  id (Auto Increment)
+            ->  task_id (Required)
+            ->  order (Required, Integer)
+            ->  context[] -> (Optional, id of other tasks that should be captured and passed before this task is executed.)
+            ->  status (Done, Not Started)
+            ->  finished_at (Optional, Date)
+            ->  created_at (Required, Date)
+            ->  last_updated (Optional, Date)
+    -> Outputs[]
+        ->  id (Auto Increment)
+        ->  task_id (Required)
+        ->  thoughts (Optional, String)
+        ->  final_output (Optional, String)
+        ->  created_at (Required, Date)
+
+
+Crew Logs
+    ->  id
+    ->  crew_id (Optional)
+    ->  task_id (Optional)
+    ->  agent_id (Optional)
+    ->  log
+    ->  timestamp
